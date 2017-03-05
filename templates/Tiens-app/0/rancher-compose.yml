@@ -1,0 +1,26 @@
+version: '2'
+.catalog:
+  name: TiensApp
+  version: 0.1-test
+  description: |
+    Tiens Comparer and Receiver POC by Rancher Labs   
+services:
+  Comparer:
+    scale: 1
+    start_on_create: true
+  Receiver:
+    scale: 1
+    start_on_create: true
+  DataBase:
+    external_ips:
+    - 172.16.129.110:1512
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 1521
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 2000
+      strategy: recreate
+      reinitializing_timeout: 60000

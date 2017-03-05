@@ -1,0 +1,45 @@
+version: '2'
+services:
+  Comparer:
+    image: gds-comparer:latest
+    environment:
+      COU: id
+      PROD_DB_IP: 172.16.129.110
+      PROD_DB_PORT: '1521'
+      PROD_DB_SID: ORCL
+      PROD_DB_USERNAME: a2d_id
+      PROD_DB_PASSWORD: tiens
+      BASE_DB_IP: 192.168.2.162
+      BASE_DB_PORT: '1521'
+      BASE_DB_SID: ORCL
+      BASE_DB_USERNAME: idsyncuser
+      BASE_DB_PASSWORD: tiens
+      APP_LOGS: /u01/applogs
+      MQ_ORDER_BIZZNAME: global_data_sync_orders
+      MQ_CUST_BIZZNAME: global_data_sync_users
+      APPKEY: 1028YA2MNW7VAUHF
+      ORDER_COUNT: '100'
+      CUST_COUNT: '50'
+    stdin_open: true
+    tty: true
+    links:
+    - DataBase:DataBase
+    ports:
+    - 8019:8018/tcp
+  Receiver:
+    image: gds-receiver:latest
+    environment:
+      DB_IP: 10.1.2.98
+      DB_PORT: '1521'
+      DB_SID: HQDATA
+      DB_USERNAME: system
+      DB_PASSWORD: jsbsysdba
+      APP_LOGS: /u01/applogs
+    stdin_open: true
+    tty: true
+    links:
+    - Comparer:Comparer
+    ports:
+    - 8018:8018/tcp
+  DataBase:
+    image: rancher/external-service
