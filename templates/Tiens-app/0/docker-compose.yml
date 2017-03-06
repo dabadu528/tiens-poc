@@ -23,9 +23,9 @@ services:
     stdin_open: true
     tty: true
     links:
-    - DataBase:DataBase
+    - Receiver:Receiver
     ports:
-    - 8019:8018/tcp
+    - 8018:8018/tcp
   Receiver:
     image: gds-receiver:latest
     environment:
@@ -38,8 +38,8 @@ services:
     stdin_open: true
     tty: true
     links:
-    - Comparer:Comparer
+    - DataBase:DataBase
     ports:
-    - 8018:8018/tcp
+    - 8019:8018/tcp
   DataBase:
     image: rancher/external-service
