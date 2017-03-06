@@ -20,10 +20,12 @@ services:
       APPKEY: 1028YA2MNW7VAUHF
       ORDER_COUNT: '100'
       CUST_COUNT: '50'
+      GDS_RECEIVER_PORT_8018_TCP_PORT: 8018
+      GDS_RECEIVER_PORT_8018_TCP_PORT: 172.16.129.141 
     stdin_open: true
     tty: true
     links:
-    - Receiver:Receiver
+    - Receiver:GDS_RECEIVER
     ports:
     - 8019:8018/tcp
   Receiver:
@@ -37,9 +39,5 @@ services:
       APP_LOGS: /u01/applogs
     stdin_open: true
     tty: true
-    links:
-    - DataBase:DataBase
     ports:
     - 8018:8018/tcp
-  DataBase:
-    image: rancher/external-service
