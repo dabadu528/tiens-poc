@@ -1,6 +1,6 @@
 version: '2'
 services:
-  Comparer:
+  GDS_COMPARER:
     image: gds-comparer:latest
     environment:
       COU: id
@@ -25,10 +25,10 @@ services:
     stdin_open: true
     tty: true
     links:
-    - Receiver:GDS_RECEIVER
+    - GDS_RECEIVER:GDS_RECEIVER
     ports:
     - 8019:8018/tcp
-  Receiver:
+  GDS_RECEIVER:
     image: gds-receiver:latest
     environment:
       DB_IP: 10.1.2.98
