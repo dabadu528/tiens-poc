@@ -25,7 +25,7 @@ services:
     links:
     - Receiver:Receiver
     ports:
-    - 8018:8018/tcp
+    - 8019:8018/tcp
   Receiver:
     image: gds-receiver:latest
     environment:
@@ -40,6 +40,6 @@ services:
     links:
     - DataBase:DataBase
     ports:
-    - 8019:8018/tcp
+    - 8018:8018/tcp
   DataBase:
     image: rancher/external-service
