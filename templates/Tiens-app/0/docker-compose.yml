@@ -1,7 +1,7 @@
 version: '2'
 services:
   COMPARER:
-    image: gds-comparer:1.0.0
+    image: gds-comparer:1.0.1
     environment:
       COU: id
       PROD_DB_IP: 172.16.129.110
@@ -27,7 +27,7 @@ services:
     ports:
     - 8019:8018/tcp
   RECEIVER:
-    image: gds-receiver:1.0.0
+    image: gds-receiver:1.0.1
     environment:
       DB_IP: 10.1.2.98
       DB_PORT: '1521'
